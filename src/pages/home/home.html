@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="hee">
+    <ion-title>Active Order</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let order of myorders">     
+    <ion-card-content>
+      <ion-row>      
+        <ion-col class="event-name">
+          <b> {{order.full_name}}</b>
+          <p class="day">
+            Amount-Rs.499
+           </p>
+          <p class="event-location">
+            {{order.full_address}}  <br>            
+            {{order.user_mobile_number}} <br>             
+            {{order.service_name}}
+          </p>
+        </ion-col>
+        <ion-col col-6 text-center>
+          <b>
+            Booking ID:{{order.bookingId}}
+          </b>            
+        </ion-col>          
+        <ion-col>
+          <p class="day">
+               Schedule-{{order.day_slot}} | {{order.time_slot}}
+          </p> 
+        <ion-item no-lines padding>
+            <!-- <p *ngIf="order.status === 'Cancelled'" style="color: red;">{{order.status}}</p> -->
+            <p *ngIf="order.status === 'Active'" style="color: green;">{{order.status}}</p>
+            <!-- <p *ngIf="order.status === 'InActive'" style="color: blue;">{{order.status}}</p> -->
+          <ion-badge item-end (click)="viewSP(order.id_book_services,order.id_user)">DETAILS</ion-badge>
+        </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

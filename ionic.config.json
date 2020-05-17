@@ -1,5 +1,7 @@
 {
-  "name": "scope-admin-app",
-  "integrations": {},
-  "type": "angular"
+  "name": "Bike_service_ionicadminapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }

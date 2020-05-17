@@ -1,1 +1,0 @@
-"# scope-admin-app" 
