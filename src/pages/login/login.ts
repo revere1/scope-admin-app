@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Global } from '../Global';
 import { HomePage } from '../home/home';
@@ -25,7 +25,7 @@ export class LoginPage {
   result: any;
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public http: Http,
+    private http: HttpClient,
     private formBuilder: FormBuilder,
     public navParams: NavParams,
     private toast: ToastController,
@@ -44,8 +44,9 @@ export class LoginPage {
     // error => console.error('Error storing item', error)
   // );
     this.http.get(`${Global.url}admin/adminLogin/`+this.signInForm.get('mobile_number').value)
-      .subscribe(data => {
-        const result = data.json()
+      .subscribe((res: any)=> {
+        //const result = data.json()
+        const result = res;
         if (result.status === 200) {
           if (result.Messages === undefined) {
             const toast = this.toast.create({

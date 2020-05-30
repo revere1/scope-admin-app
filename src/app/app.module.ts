@@ -15,6 +15,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { OtpPage } from '../pages/otp/otp';
 import { ActiveDetailsPage } from '../pages/active-details/active-details';
 import { CloseOrdersPage } from '../pages/close-orders/close-orders';
+import { HttpClientModule } from '@angular/common/http';
 
 //import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -25,7 +26,7 @@ import { CloseOrdersPage } from '../pages/close-orders/close-orders';
     HomePage, LoginPage, TabsPage, ListPage, ActiveDetailsPage, CloseOrdersPage, OtpPage
   ],
   imports: [
-    BrowserModule,HttpModule,ReactiveFormsModule, FormsModule,
+    BrowserModule,HttpModule,ReactiveFormsModule, FormsModule,HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

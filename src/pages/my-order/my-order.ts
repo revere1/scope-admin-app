@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 
 import { Http } from '@angular/http';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Global } from '../../Global';
+import { Global } from '../Global';
 //import { MyorderDetailsPage } from '../myorder-details/myorder-details';
 
 /**
