@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Global } from '../Global';
 import { HomePage } from '../home/home';
@@ -35,6 +35,16 @@ export class LoginPage {
       mobile_number: ['', [Validators.required,Validators.minLength(10), Validators.maxLength(10)]]
     });
   }
+
+  getHeader(){
+    let headers = {
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'text/javascript'
+      })
+      };
+      return headers;
+    }
   signIn() {
     localStorage.setItem('mobile', JSON.parse(this.signInForm.get('mobile_number').value))
     // Global.mobileNumber = this.signInForm.get('mobile_number').value;
@@ -43,9 +53,16 @@ export class LoginPage {
     // () => console.log('Stored item!'),
     // error => console.error('Error storing item', error)
   // );
-    this.http.get(`${Global.url}admin/adminLogin/`+this.signInForm.get('mobile_number').value)
+ 
+
+    this.http.get(`${Global.url}admin/adminLogin/`+this.signInForm.get('mobile_number').value,this.getHeader())
       .subscribe((res: any)=> {
         //const result = data.json()
+        var headers = new Headers();
+        headers.append('Access-Control-Allow-Origin' , '*');
+        headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+        headers.append('Accept','application/json');
+        headers.append('content-type','application/json');
         const result = res;
         if (result.status === 200) {
           if (result.Messages === undefined) {
@@ -74,7 +91,7 @@ export class LoginPage {
         err => {
           const alert = this.alertCtrl.create({
             title: 'Alert',
-            subTitle: 'Something went wrong ,Please try again!',
+            subTitle: `Something went wrong ,Please try again!${Global.url},${JSON.stringify(err)}`,
             buttons: ['OK']
           });
           alert.present();
